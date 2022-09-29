@@ -1,0 +1,61 @@
+Merge the two lists in a one sorted list. The list should be made by splicing together the nodes of the first two lists.
+
+Return the head of the merged linked list.
+
+Input Format :
+l1 = {3,7,10}, l2 = {1,2,5,8,10}
+
+Output :
+{1,2,3,5,7,8,10,10}
+
+
+#include <bits/stdc++.h> 
+#include <bits/stdc++.h> 
+/************************************************************
+
+    Following is the linked list node structure.
+    
+    template <typename T>
+    class Node {
+        public:
+        T data;
+        Node* next;
+
+        Node(T data) {
+            next = NULL;
+            this->data = data;
+        }
+
+        ~Node() {
+            if (next != NULL) {
+                delete next;
+            }
+        }
+    };
+
+************************************************************/
+Node<int>* sortTwoLists(Node<int>* l, Node<int>* m)
+{
+   if(l==NULL){
+       return m;
+   }
+   if(m==NULL){
+       return l;
+   }
+   if(l->data > m->data){
+       swap(l, m);
+   }
+   Node<int>* res=l;
+   while(l!=NULL && m!=NULL){
+       Node<int>* temp=NULL;
+       while(l!=NULL && l->data <= m->data){
+           temp=l;
+           l=l->next;
+       }
+       temp->next=m;
+       swap(l, m);
+   }
+   return res;
+}
+
+      

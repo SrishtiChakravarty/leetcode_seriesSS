@@ -1,0 +1,70 @@
+Given the head of a linked list, rotate the list to the right by k places.
+
+Example 1:
+
+
+Input: head = [1,2,3,4,5], k = 2
+Output: [4,5,1,2,3]
+
+
+Example 1:
+Input:
+	head = [1,2,3,4,5] 
+	k = 2
+Output:
+ head = [4,5,1,2,3]
+Explanation:
+ We have to rotate the list to the right twice.
+
+
+refrence:https://leetcode.com/problems/rotate-list/
+https://takeuforward.org/data-structure/rotate-a-linked-list/
+
+
+
+
+
+
+#include <bits/stdc++.h> 
+#include <bits/stdc++.h> 
+/********************************
+
+    Following is the class structure of the Node class:
+    
+    class Node
+    {
+    	public:
+    	    int data;
+    	    Node *next;
+    	    Node(int data)
+    	    {
+    	        this->data = data;
+    	        this->next = NULL;
+    	    }
+    };
+
+********************************/
+
+
+Node *rotate(Node *head, int k) {
+     if(!head || !head->next || k==0) return head;
+    
+    Node *curr=head;
+    int len=1;
+    while(curr->next && ++len)
+        curr=curr->next;
+    
+    
+    curr->next=head;
+    k=k%len;
+    k=len-k;
+    while(k--) curr=curr->next;
+    
+    
+    head=curr->next;
+    curr->next=NULL;
+    
+    
+    return head;
+    
+}
